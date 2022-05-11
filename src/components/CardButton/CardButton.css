@@ -1,0 +1,17 @@
+.card-button {
+  margin: 24px 24px auto auto;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  background-image: url('../../images/save-button.png');
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.card-button:hover {
+  background-image: url('../../images/save-button-hover.png');
+}
+
+.card-button:active {
+  background-image: url('../../images/save-button-selected.png');
+}
