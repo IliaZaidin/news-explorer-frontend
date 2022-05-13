@@ -38,10 +38,10 @@
 
 .search__input-field-wrapper {
   width: 540px;
-  height: 64px;
+  height: 62px;
   border-radius: 100px 100px 100px 100px;
-  border: none;
-  background-color: #D1D2D6;
+  border: 1px solid #D1D2D6;;
+  background-color: #FFFFFF;
   outline: none;
   display: flex;
   align-items: center;
@@ -50,14 +50,14 @@
 .search__input-field {
   font-family: Roboto, serif;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 16px;
   line-height: 22px;
   color: #1A1B22;
   margin-left: 24px;
   width: 376px;
   border: none;
-  background-color: #D1D2D6;
+  background-color: #FFFFFF;
   outline: none;
 } 
 
@@ -102,7 +102,7 @@
 
   .search__title {
     margin-left: 160px;
-    max-width: 358px;
+    max-width: 385px;
     font-size: 36px;
     line-height: 40px;
   }
@@ -113,8 +113,8 @@
   }
 
   .search__input-field-wrapper {
-    width: 388px;
-    height: 56px;
+    width: 386px;
+    height: 54px;
   }
 
   .search__input-field {

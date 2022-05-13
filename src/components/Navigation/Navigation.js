@@ -14,7 +14,7 @@ function Navigation(props) {
   const isOnSavedNewsPage = (location.pathname === '/saved-news');
 
   return (
-    <div className={`navigation ${isNavOpen && 'navigation_active'} ${isOnSavedNewsPage && 'navigation__type_saved'}`}>
+    <nav className={`navigation ${isNavOpen && 'navigation_active'} ${isOnSavedNewsPage && 'navigation__type_saved'}`}>
       <Link
         to='/' className={`navigation__home link ${isOnSavedNewsPage && 'navigation__home_type_saved'}`}
         onClick={() => { setNavOpen(false) }}
@@ -33,13 +33,13 @@ function Navigation(props) {
       >
         {isLoggedIn ?
           <>
-            <span className={`navigation__log-title ${isOnSavedNewsPage && 'navigation__log-title_type_saved'}`}>Elis</span>
+            <p className={`navigation__log-title ${isOnSavedNewsPage && 'navigation__log-title_type_saved'}`}>Elis</p>
             <div className={`navigation__log-image ${isOnSavedNewsPage && 'navigation__log-image_type_saved'}`}></div>
           </> :
-          <span className={`navigation__log-title ${isOnSavedNewsPage && 'navigation__log-title_type_saved'}`}>Sign in</span>
+          <p className={`navigation__log-title ${isOnSavedNewsPage && 'navigation__log-title_type_saved'}`}>Sign in</p>
         }
       </button>
-    </div>
+    </nav>
   )
 }
 

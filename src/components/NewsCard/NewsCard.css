@@ -26,14 +26,14 @@
 
 .card__title {
   width: 352px;
-  margin-left: 24px;
+  margin: 0 0 0 24px;
   font-family: Roboto Slab, serif;
   font-style: normal;
   font-weight: 400;
   font-size: 26px;
-  line-height: 30px;
+  line-height: 36px;
   color: #1A1B22;
-  overflow: hidden;
+  overflow:hidden;
 }
 
 .card__article {
@@ -45,8 +45,7 @@
   font-size: 16px;
   line-height: 22px;
   color: #1A1B22;
-  overflow: hidden;
-  /* text-overflow: ellipsis; */
+  overflow:hidden;
 }
 .card__subtitle {
   margin: 0 auto 24px 24px;
@@ -80,7 +79,7 @@
     width: 192px;
     margin-left: 16px;
     font-size: 22px;
-    line-height: 24px;
+    line-height: 26px;
   }
 
   .card__article {
@@ -99,7 +98,6 @@
   .card {
     grid-template-columns: 288px;
     grid-template-rows: 196px 50px 62px 96px 36px;
-
   }
 
   .card__image {
@@ -116,7 +114,7 @@
     width: 256px;
     margin-left: 16px;
     font-size: 22px;
-    line-height: 24px;
+    line-height: 28px;
   }
 
   .card__article {

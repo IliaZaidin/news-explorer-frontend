@@ -17,8 +17,8 @@ function Header(props) {
 
   return (
     <header className={`header ${isOnSavedNewsPage && 'header_type_saved'}`} >
-      <span className='header__wrapper'>
-        <span className='header__top'>
+      <div className='header__wrapper'>
+        <section className={`header__top ${isNavOpen && 'header__top_active'}`}>
           <h1 className={`header__title ${isOnSavedNewsPage && 'header__title_type_saved'}`}>NewsExplorer</h1>
           {isNavOpen ?
             <button
@@ -40,11 +40,11 @@ function Header(props) {
             handleOpenForm={handleOpenForm}
             handleLogOut={handleLogOut}
           />
-        </span>
+        </section>
         {
           isOnSavedNewsPage ? <SavedNewsHeader /> : <SearchForm />
         }
-      </span>
+      </div>
     </header>
   );
 }

@@ -15,6 +15,7 @@
 
 .cards__list {
   margin-top: 62px;
+  padding: 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: auto;
@@ -36,6 +37,10 @@
   font-size: 18px;
   line-height: 24px;
   color: #1A1B22;
+}
+
+.cards__button:hover {
+  background-color: #FFFFFFE6;
 }
 
 /*tablet/laptop view*/

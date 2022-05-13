@@ -3,17 +3,17 @@ import NewsCard from "../NewsCard/NewsCard";
 
 function NewsCardList() {
   return (
-    <div className="cards">
-      <span className="cards__wrapper">
-        <div className="cards__list">
+    <section className="cards">
+      <div className="cards__wrapper">
+        <ul className="cards__list">
           <NewsCard />
           <NewsCard />
           <NewsCard />
           <NewsCard />
-        </div>
+        </ul>
         <button className="cards__button">Show more</button>
-      </span>
-    </div>
+      </div>
+    </section>
   )
 }
 

@@ -7,7 +7,7 @@
 }
 
 .about__wrapper {
-  width: 1024px;
+  width: 1440px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -15,22 +15,22 @@
 
 .about__avatar {
   margin: 80px 56px 80px 104px;
+  width: 464px;
+  height: 464px;
   background-image: url('../../images/avatar.png');
   background-repeat: no-repeat;
   background-size: contain;
-  width: 464px;
-  height: 464px;
+  border-radius: 100%;
 }
 
 .about__text-wrapper {
   width: 600px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
 }
 
 .about__title {
-  margin: 131px 0 0;
+  margin: 131px 0 24px;
   font-family: Roboto Slab, serif;
   font-style: normal;
   font-weight: 400;
@@ -41,10 +41,9 @@
 
 .about__subtitle {
   margin: 0;
-
-  font-family: Roboto Slab, serif;
+  font-family: Roboto, serif;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 400;
   font-size: 18px;
   line-height: 24px;
   color: #1A1B22;
@@ -65,14 +64,12 @@
 
   .about__text-wrapper {
     width: 424px;
-    gap: 16px;
   }
   
   .about__title {
-    margin: 40px 0 0;
+    margin: 40px 0 10px;
     font-size: 30px;
     line-height: 40px;
-    color: #1A1B22;
   }
 }
 
@@ -94,6 +91,9 @@
   .about__text-wrapper {
     margin-bottom: 128px;
     width: 288px;
-    gap: 16px;
+  }
+
+  .about__title {
+    margin: 0 0 16px;
   }
 }
