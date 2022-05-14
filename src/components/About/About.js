@@ -15,7 +15,6 @@ function About() {
             the Web Development Training Program by Yandex. During the course I studied the following technologies: 
             HTML, CSS, JavaScript, React.JS, Node.JS and much more. Now I am looking forward to starting my new career.
           </p>
-          {/* <p className='about__subtitle'></p> */}
         </div>
       </div>
     </section>

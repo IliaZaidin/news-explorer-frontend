@@ -18,7 +18,7 @@ function Header(props) {
   return (
     <header className={`header ${isOnSavedNewsPage && 'header_type_saved'}`} >
       <div className='header__wrapper'>
-        <section className={`header__top ${isNavOpen && 'header__top_active'}`}>
+        <section className={`header__top ${(isNavOpen && !isOnSavedNewsPage) && 'header__top_active'}`} >
           <h1 className={`header__title ${isOnSavedNewsPage && 'header__title_type_saved'}`}>NewsExplorer</h1>
           {isNavOpen ?
             <button

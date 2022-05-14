@@ -26,19 +26,24 @@
 
 .card__title {
   width: 352px;
-  margin: 0 0 0 24px;
+  margin: auto 0 auto 24px;
   font-family: Roboto Slab, serif;
   font-style: normal;
   font-weight: 400;
   font-size: 26px;
-  line-height: 36px;
+  line-height: 30px;
   color: #1A1B22;
   overflow:hidden;
+  text-overflow:ellipsis;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  white-space: normal;
 }
 
 .card__article {
   width: 352px;
-  margin: 16px auto 24px;
+  margin: auto;
   font-family: Roboto, serif;
   font-style: normal;
   font-weight: 400;
@@ -46,6 +51,11 @@
   line-height: 22px;
   color: #1A1B22;
   overflow:hidden;
+  text-overflow:ellipsis;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  white-space: normal;
 }
 .card__subtitle {
   margin: 0 auto 24px 24px;
@@ -79,13 +89,13 @@
     width: 192px;
     margin-left: 16px;
     font-size: 22px;
-    line-height: 26px;
+    line-height: 30px;
+    -webkit-line-clamp: 3;
   }
 
   .card__article {
     width: 192px;
-    margin: 10px auto 12px;
-    margin: 15px auto 18px;
+    margin: auto;
   }
 
   .card__subtitle {
@@ -114,12 +124,14 @@
     width: 256px;
     margin-left: 16px;
     font-size: 22px;
-    line-height: 28px;
+    line-height: 24px;
+    -webkit-line-clamp: 2;
   }
 
   .card__article {
     width: 256px;
     margin: 14px auto 12px;
+    -webkit-line-clamp: 3;
   }
 
 

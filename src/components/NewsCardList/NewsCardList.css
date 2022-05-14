@@ -72,4 +72,9 @@
     grid-template-columns: auto;
     grid-template-rows: auto;
   }
+
+  .cards__button {
+    margin: 16px auto 32px;
+    width: 288px;
+  }
 }

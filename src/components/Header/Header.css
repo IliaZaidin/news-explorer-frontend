@@ -27,10 +27,6 @@
   position: relative;
 }
 
-.header__top_active {
-  background-color: #1A1B22FF;
-}
-
 .header__title {
   margin: 30px auto 26px 104px;
   padding: 0;
@@ -92,6 +88,10 @@
 
   .header__top {
     height: 56px;
+  }
+
+  .header__top_active {
+    background-color: #1A1B22FF;
   }
 
   .header__title {
