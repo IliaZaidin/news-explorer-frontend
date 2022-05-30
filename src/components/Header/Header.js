@@ -1,19 +1,14 @@
 import './Header.css';
+import { useState } from 'react';
 import Navigation from '../Navigation/Navigation';
 import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 import SearchForm from '../SearchForm/SearchForm';
 
 function Header(props) {
-  const {
-    isLoggedIn,
-    isNavOpen,
-    setNavOpen,
-    location,
-    handleOpenForm,
-    handleLogOut
+  const { isLoggedIn, location, handleLogOut, handleLogIn, handleSearchSubmit, savedArticles
   } = props;
-
   const isOnSavedNewsPage = (location.pathname === '/saved-news');
+  const [isNavOpen, setNavOpen] = useState(false);
 
   return (
     <header className={`header ${isOnSavedNewsPage && 'header_type_saved'}`} >
@@ -24,25 +19,31 @@ function Header(props) {
             <button
               className={`header__button ${isOnSavedNewsPage && 'header__button_type_saved'}`}
               onClick={() => { setNavOpen(false) }}
-            >&#10005;
-            </button> :
+            >&#10005;</button> :
+
             <button
               className={`header__button ${isOnSavedNewsPage && 'header__button_type_saved'}`}
               onClick={() => { setNavOpen(true) }}
-            >&#x268C;
-            </button>
+            >&#x268C;</button>
           }
           <Navigation
             isLoggedIn={isLoggedIn}
             isNavOpen={isNavOpen}
             setNavOpen={setNavOpen}
             location={location}
-            handleOpenForm={handleOpenForm}
             handleLogOut={handleLogOut}
+            handleLogIn={handleLogIn}
           />
         </section>
         {
-          isOnSavedNewsPage ? <SavedNewsHeader /> : <SearchForm />
+          isOnSavedNewsPage ?
+            <SavedNewsHeader
+              savedArticles={savedArticles}
+            />
+            :
+            <SearchForm
+              handleSearchSubmit={handleSearchSubmit}
+            />
         }
       </div>
     </header>

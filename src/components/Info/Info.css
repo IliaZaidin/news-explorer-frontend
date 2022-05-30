@@ -1,4 +1,4 @@
-.success {
+.info {
   width: 430px;
   height: 182px;
   position: fixed;
@@ -9,11 +9,11 @@
   align-items: flex-start;
 }
 
-.success_active {
+.info_active {
   display: flex;
 }
 
-.success__title {
+.info__title {
   margin: 43px auto 14px 36px;
   width: 315px;
   font-family: Roboto, serif;
@@ -24,7 +24,7 @@
   color: #000000;
 }
 
-.success__redirect {
+.info__redirect {
   margin: 0 0 51px 36px;
   font-family: Inter, serif;
   font-style: normal;
@@ -36,7 +36,7 @@
   cursor: pointer;
 }
 
-.success__close {
+.info__close {
   margin: 0;
   padding: 0;
   width: 40px;

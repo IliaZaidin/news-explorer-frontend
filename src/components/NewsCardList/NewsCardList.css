@@ -1,9 +1,13 @@
 .cards {
   width: 100%;
   background-color: #F5F6F7;
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
+}
+
+.cards__active {
+  display: flex;
 }
 
 .cards__wrapper {
@@ -23,7 +27,7 @@
   background-color: #F5F6F7;
 }
 
-.cards__button {
+.cards__more {
   margin: 64px auto 80px;
   width: 288px;
   height: 64px;
@@ -37,10 +41,15 @@
   font-size: 18px;
   line-height: 24px;
   color: #1A1B22;
+  display: none;
 }
 
-.cards__button:hover {
+.cards__more:hover {
   background-color: #FFFFFFE6;
+}
+
+.cards__more_active {
+  display: block;
 }
 
 /*tablet/laptop view*/
@@ -54,7 +63,7 @@
     gap: 8px;
   }
 
-  .cards__button {
+  .cards__more {
     margin: 32px auto 40px;
     width: 240px;
     height: 56px;
@@ -73,7 +82,7 @@
     grid-template-rows: auto;
   }
 
-  .cards__button {
+  .cards__more {
     margin: 16px auto 32px;
     width: 288px;
   }
