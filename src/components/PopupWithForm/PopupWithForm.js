@@ -36,11 +36,13 @@ function PopupWithForm(props) {
           Email
           <input
             className="popup__input"
-            placeholder="Enter email" type='email'
+            placeholder="Enter email"
+            type='email'
             required
+            value={email}
             onChange={(event) => setEmail(event.target.value)}
           />
-          <p className='popup__error'>error</p>
+          <p className={`popup__error ${!isInputValid && 'popup__error_active'}`}></p>
         </label>
 
         <label className='popup__input-label'>
@@ -50,9 +52,10 @@ function PopupWithForm(props) {
             placeholder="Enter password"
             type='password'
             required
+            value={password}
             onChange={(event) => setPassword(event.target.value)}
           />
-          <p className='popup__error'>error</p>
+          <p className={`popup__error ${!isInputValid && 'popup__error_active'}`}></p>
         </label>
 
         {
@@ -63,10 +66,12 @@ function PopupWithForm(props) {
               className="popup__input"
               placeholder="Enter your username"
               type='text'
+              minLength={2}
               required
+              value={username}
               onChange={(event) => setUsername(event.target.value)}
             />
-            <p className='popup__error'>error</p>
+            <p className={`popup__error ${!isInputValid && 'popup__error_active'}`}></p>
           </label>
         }
 

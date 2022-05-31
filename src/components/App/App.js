@@ -2,14 +2,14 @@ import './App.css';
 import { Routes, Route, useLocation, useNavigate, Navigate } from "react-router-dom";
 import { useState, useEffect } from 'react';
 
-import Header from './components/Header/Header';
-import Main from './components/Main/Main';
-import Footer from './components/Footer/Footer';
-import ModalWindow from './components/ModalWindow/ModalWindow';
-import SavedNews from './components/SavedNews/SavedNews';
-import { getArticlesFromApi } from './utils/NewsApi';
-import { register, login, getUserData, saveArticle, deleteArticle, getArticlesFromDb } from './utils/MainApi';
-import { CurrentUserContext } from './contexts/CurrentUserContext';
+import Header from '../Header/Header';
+import Main from '../Main/Main';
+import Footer from '../Footer/Footer';
+import ModalWindow from '../ModalWindow/ModalWindow';
+import SavedNews from '../SavedNews/SavedNews';
+import { getArticlesFromApi } from '../../utils/NewsApi';
+import { register, login, getUserData, saveArticle, deleteArticle, getArticlesFromDb } from '../../utils/MainApi';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
@@ -59,6 +59,7 @@ function App() {
   function closeAllPopups() {
     setInfoOpen(false);
     setLoginFormOpen(false);
+    setPreloaderOpen(false);
     setModalOpen(false);
   }
 
@@ -82,31 +83,32 @@ function App() {
   async function handleLoginSubmit(event, email, password) {
     try {
       event.preventDefault();
+      setModalOpen(true);
+      setPreloaderOpen(true);
+
       const data = await login(email, password);
-      localStorage.setItem('jwt', data.token);
-      setLoggedIn(true);
+      if (data) {
+        localStorage.setItem('jwt', data.token);
+        
+        const user = await getUserData(localStorage.getItem('jwt').jwt);
+        if (user) {
+          setCurrentUser(user || {});
+          setLoggedIn(true);
+
+          const articlesFromDb = await getArticlesFromDb();
+          if (articlesFromDb) {
+            setSavedArticles(articlesFromDb || []);
+          }
+        }
+      }
+      setModalOpen(false);
+      setPreloaderOpen(false);
+      setLoginFormOpen(false);
     }
     catch (error) {
       closeAllPopups();
       alert('Failed to log in.');
     }
-
-    try {
-      const user = await getUserData(localStorage.getItem('jwt').jwt);
-      setCurrentUser(user || {});
-    } catch (error) {
-      closeAllPopups();
-      alert('User does not exist.');
-    }
-
-    try {
-      const articlesFromDb = await getArticlesFromDb();
-      setSavedArticles(articlesFromDb || []);
-    } catch (error) {
-      closeAllPopups();
-      return;
-    }
-    closeAllPopups();
   }
 
   async function handleSignupSubmit(event, email, password, username) {
@@ -126,7 +128,7 @@ function App() {
       event.preventDefault();
       setModalOpen(true);
       setPreloaderOpen(true);
-      let searchResult = await getArticlesFromApi(keyWord);
+      let searchResult = await getArticlesFromApi(keyWord); 
       localStorage.setItem('lastSearch', JSON.stringify(searchResult.articles));
       localStorage.setItem('keyWord', keyWord);
       setSearchedArticles(JSON.parse(localStorage.getItem('lastSearch')))

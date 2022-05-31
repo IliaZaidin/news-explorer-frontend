@@ -1,36 +1,34 @@
 export default function makeListOfKeywords(articles) {
   const allKeyWords = [];
   const newArray = [];
-  
+
   articles.forEach((element) => {
     allKeyWords.push(element.keyword);
   })
 
   allKeyWords.sort();
 
-  for (let i=0; i<=allKeyWords.length; i++) {
-    const upTo = allKeyWords.lastIndexOf(allKeyWords[i]);
-    // newArray[i] = allKeyWords.slice(0, upTo+1);
-    allKeyWords.splice(i, upTo+1); 
+  for (let i = 0; i <= allKeyWords.length; i++) {
+    for (let j = 0; j <= allKeyWords.length; j++) {
+      const upTo = allKeyWords.lastIndexOf(allKeyWords[0]);
+      newArray[j] = allKeyWords.slice(0, upTo + 1);
+      allKeyWords.splice(0, upTo + 1);
+    }
   }
 
-  // for (let i=0; i<newArray.length; i++) {
-  //   let temp = 0;
-  //   const x = [].concat(newArray[i]);
-  //   const y = [].concat(newArray[i+1]);
-  //   if (y.length > x.length) {
-  //     temp = newArray[i];
-  //     newArray[i] = newArray[i+1];
-  //     newArray[i+1] = temp;
-  //   }
-  // }
+  newArray.sort((a, b) => {
+    return a.length - b.length;
+  }).reverse();
 
-  // for (let i=0; i<newArray.length; i++) {
-  //   allKeyWords[i] = newArray[i][0];
-  // }
 
-  console.log(allKeyWords)
-  console.log(newArray)
+  newArray.forEach((element, i) => {
+    allKeyWords.push(element[0]);
+  })
 
-  return allKeyWords.join(', ');
+  if (allKeyWords.length < 4) {
+    return allKeyWords.join(', ');
+  } else {
+    const output = allKeyWords[0]+', '+allKeyWords[1]+', and '+(allKeyWords.length-2)+' others.';
+    return output;
+  }
 }

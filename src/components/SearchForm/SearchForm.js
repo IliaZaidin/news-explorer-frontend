@@ -26,7 +26,7 @@ function SearchForm(props) {
             required
             placeholder="Enter topic"
             value={keyWord}
-            onChange={(event) => setKeyWord(event.target.value)}
+            onChange={(event) => setKeyWord(event.target.value.toLowerCase())}
           />
         </div>
         <button className="search__button" type="submit">Search</button>
