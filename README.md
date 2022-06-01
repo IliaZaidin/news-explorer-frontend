@@ -4,5 +4,4 @@ This page is a news-explorer, powered by [News API](https://newsapi.org/). The p
 
 Technologies used in the project: React.JS, Node.JS, Express.JS, MongoDB.
 
-[Link to the page](www.ilia-final.students.nomoreparties.sbs){:target="_blank"}
-
+[Link to the page](https://www.ilia-final.students.nomoreparties.sbs/"target="_blank")
