@@ -30,20 +30,19 @@ function App() {
     (async () => {
       try {
         const user = await getUserData(localStorage.getItem('jwt').jwt);
-        setCurrentUser(user);
-        setLoggedIn(true);
-      } catch (error) {
+        if (user) {
+          setCurrentUser(user);
+          setLoggedIn(true);
+        }
+        const articlesFromDb = await getArticlesFromDb();
+        if (articlesFromDb) {
+          setSavedArticles(articlesFromDb);
+        }
+      } catch {
         return;
       }
-
-      try {
-        const articlesFromDb = await getArticlesFromDb();
-        setSavedArticles(articlesFromDb);
-      } catch (error) {
-        setSavedArticles([]);
-      }
-      setSearchedArticles(JSON.parse(localStorage.getItem('lastSearch')) || []);
     })();
+    // setSearchedArticles(JSON.parse(localStorage.getItem('lastSearch')) || []);
   }, [isLoggedIn]);
 
   useEffect(() => {
@@ -85,38 +84,51 @@ function App() {
       event.preventDefault();
       setModalOpen(true);
       setPreloaderOpen(true);
-
       const data = await login(email, password);
       if (data) {
         localStorage.setItem('jwt', data.token);
-        
-        const user = await getUserData(localStorage.getItem('jwt').jwt);
-        if (user) {
-          setCurrentUser(user || {});
-          setLoggedIn(true);
-
-          const articlesFromDb = await getArticlesFromDb();
-          if (articlesFromDb) {
-            setSavedArticles(articlesFromDb || []);
-          }
-        }
       }
-      setModalOpen(false);
-      setPreloaderOpen(false);
-      setLoginFormOpen(false);
     }
-    catch (error) {
+    catch {
       closeAllPopups();
-      alert('Failed to log in.');
+      alert('Failed to log in. Wrong email or password');
+      return;
     }
+
+    try {
+      const user = await getUserData(localStorage.getItem('jwt').jwt);
+      if (user) {
+        setCurrentUser(user || {});
+        setLoggedIn(true);
+      }
+    } catch {
+      closeAllPopups();
+      alert('Failed to log in. User not found.');
+      return;
+    }
+
+    try {
+      const articlesFromDb = await getArticlesFromDb();
+      if (articlesFromDb) {
+        setSavedArticles(articlesFromDb || []);
+      }
+    }
+    catch {
+      closeAllPopups();
+    }
+    setModalOpen(false);
+    setPreloaderOpen(false);
+    setLoginFormOpen(false);
   }
 
   async function handleSignupSubmit(event, email, password, username) {
     try {
       event.preventDefault();
       setLoginFormOpen(false);
-      await register(email, password, username);
-      setInfoOpen(true);
+      const data = await register(email, password, username);
+      if (data.email === email) {
+        setInfoOpen(true);
+      }
     } catch (error) {
       closeAllPopups();
       alert('Failed to sign up.')
@@ -128,11 +140,13 @@ function App() {
       event.preventDefault();
       setModalOpen(true);
       setPreloaderOpen(true);
-      let searchResult = await getArticlesFromApi(keyWord); 
-      localStorage.setItem('lastSearch', JSON.stringify(searchResult.articles));
-      localStorage.setItem('keyWord', keyWord);
-      setSearchedArticles(JSON.parse(localStorage.getItem('lastSearch')))
-      localStorage.setItem('counter', 3)
+      let searchResult = await getArticlesFromApi(keyWord);
+      if (searchResult) {
+        localStorage.setItem('lastSearch', JSON.stringify(searchResult.articles));
+        localStorage.setItem('keyWord', keyWord);
+        setSearchedArticles(JSON.parse(localStorage.getItem('lastSearch')))
+        localStorage.setItem('counter', 3)
+      }
       setModalOpen(false);
       setPreloaderOpen(false);
     } catch (error) {
@@ -145,7 +159,9 @@ function App() {
     try {
       await deleteArticle(article);
       const articlesFromDb = await getArticlesFromDb();
-      setSavedArticles(articlesFromDb);
+      if (articlesFromDb) {
+        setSavedArticles(articlesFromDb);
+      }
     } catch (error) {
       setSavedArticles([]);
     }
@@ -155,7 +171,9 @@ function App() {
     try {
       await saveArticle(article);
       const articlesFromDb = await getArticlesFromDb();
-      setSavedArticles(articlesFromDb);
+      if (articlesFromDb) {
+        setSavedArticles(articlesFromDb);
+      }
     } catch (error) {
       if (isLoggedIn)
         alert('Failed to save article.');

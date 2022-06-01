@@ -45,13 +45,14 @@ const login = async (email, password) => {
 
 const getUserData = async () => {
   const res = await fetch(
-    `${baseUrl}/users/me`, {
-    method: 'GET',
-    headers: {
-      "Content-Type": "application/json",
-      "authorization": `Bearer ${localStorage.getItem('jwt')}`
-    }
-  });
+    `${baseUrl}/users/me`,
+    {
+      method: 'GET',
+      headers: {
+        "Content-Type": "application/json",
+        "authorization": `Bearer ${localStorage.getItem('jwt')}`
+      }
+    });
   return checkResponse(res);
 }
 
