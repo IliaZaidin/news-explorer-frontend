@@ -11,12 +11,12 @@ function NewsCardList(props) {
   const [sliceOfArticles, setSliceOfArticles] = useState(3);
 
   useEffect(()=> {
-    setSliceOfArticles(parseInt(localStorage.getItem('counter')));
+    setSliceOfArticles(localStorage.getItem('counter'));
   }, [searchedArticles])
 
   function showMore() {
     if (sliceOfArticles < searchedArticles.length) {
-      localStorage.setItem('counter', (sliceOfArticles + 3).toString());
+      localStorage.setItem('counter', (parseInt(sliceOfArticles) + 3));
       setSliceOfArticles(localStorage.getItem('counter'));
     }
   }
@@ -65,7 +65,6 @@ function NewsCardList(props) {
                       handleSaveArticle={handleSaveArticle}
                       handleDeleteArticle={handleDeleteArticle}
                       savedArticles={savedArticles}
-                      searchedArticles={searchedArticles}
                     />
                   ))
                 }
