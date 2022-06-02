@@ -72,7 +72,7 @@ const saveArticle = async (article) => {
         date: article.date,
         source: article.source,
         link: article.link,
-        image: article.image
+        image: article.image || "https://raw.githubusercontent.com/IliaZaidin/news-explorer-frontend/main/public/logo192.png"
       })
     });
   return checkResponse(res);
@@ -80,7 +80,7 @@ const saveArticle = async (article) => {
 
 const deleteArticle = async (article) => {
   const res = await fetch(
-    `${baseUrl}/articles/${article._id}`, { //no sure about this one
+    `${baseUrl}/articles/${article._id}`, {
     method: 'DELETE',
     headers: {
       "Content-Type": "application/json",

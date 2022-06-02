@@ -7,16 +7,67 @@ function PopupWithForm(props) {
   } = props;
   const [isLoggingIn, setLoggingIn] = useState(true);
   const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState(' ');
   const [password, setPassword] = useState('');
+  const [passwordError, setPasswordError] = useState(' ');
   const [username, setUsername] = useState('');
-  const [isInputValid, setInputValid] = useState(true);
+  const [usernameError, setUsernameError] = useState(' ');
+  const [isInputValid, setInputValid] = useState(false);
+  const emailTestPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
   useEffect(() => {
     setLoggingIn(true);
+    setInputValid(false);
   }, [isLoginFormOpen])
+
+  useEffect(()=> {
+    if (!emailError && !passwordError && (!usernameError || isLoggingIn)) {
+      setInputValid(true);
+    } else {
+      setInputValid(false);
+    }
+  }, [emailError, passwordError, usernameError, isLoggingIn])
+
+  function handleEmailChange(event) {
+    setEmail(event.target.value);
+    if (!event.target.value) {
+      setEmailError('Email is required');
+    } else if (!emailTestPattern.test(event.target.value)) {
+      setEmailError('Incorrect email.');
+    }
+    else {
+      setEmailError('');
+    }
+  }
+
+  function handlePasswordChange(event) {
+    setPassword(event.target.value);
+    if (!event.target.value) {
+      setPasswordError('Password is required.');
+    } else if (event.target.value.length < 3) {
+      setPasswordError('The password is too short.');
+    } else {
+      setPasswordError('');
+    }
+  }
+
+  function handleUsernameChange(event) {
+    setUsername(event.target.value);
+    if (!event.target.value) {
+      setUsernameError('Username is required.');
+    } else if (event.target.value.length < 3) {
+      setUsernameError('The username is too short.');
+    } else {
+      setUsernameError('');
+    }
+  }
 
   function handleClose() {
     closeAllPopups();
+  }
+
+  function handleLogSwitch() {
+    setLoggingIn(!isLoggingIn);
   }
 
   function handleSubmit(event) {
@@ -31,6 +82,7 @@ function PopupWithForm(props) {
       <form
         className="popup__form"
         onSubmit={handleSubmit}
+        noValidate
       >
         <label className='popup__input-label'>
           Email
@@ -40,9 +92,9 @@ function PopupWithForm(props) {
             type='email'
             required
             value={email}
-            onChange={(event) => setEmail(event.target.value)}
+            onChange={handleEmailChange}
           />
-          <p className={`popup__error ${!isInputValid && 'popup__error_active'}`}></p>
+          <p className="popup__error">{emailError}</p>
         </label>
 
         <label className='popup__input-label'>
@@ -53,9 +105,9 @@ function PopupWithForm(props) {
             type='password'
             required
             value={password}
-            onChange={(event) => setPassword(event.target.value)}
+            onChange={handlePasswordChange}
           />
-          <p className={`popup__error ${!isInputValid && 'popup__error_active'}`}></p>
+          <p className='popup__error' >{passwordError}</p>
         </label>
 
         {
@@ -69,9 +121,9 @@ function PopupWithForm(props) {
               minLength={2}
               required
               value={username}
-              onChange={(event) => setUsername(event.target.value)}
+              onChange={handleUsernameChange}
             />
-            <p className={`popup__error ${!isInputValid && 'popup__error_active'}`}></p>
+            <p className='popup__error'>{usernameError}</p>
           </label>
         }
 
@@ -80,7 +132,7 @@ function PopupWithForm(props) {
         </button>
       </form>
 
-      <p className='popup__log-select' onClick={() => setLoggingIn(!isLoggingIn)}>
+      <p className='popup__log-select' onClick={handleLogSwitch}>
         {isLoggingIn ? ' or Sign Un' : 'or Sign in'}
       </p>
 

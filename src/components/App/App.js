@@ -131,7 +131,7 @@ function App() {
       }
     } catch (error) {
       closeAllPopups();
-      alert('Failed to sign up.')
+      alert('Failed to sign up. This email might be taken.')
     }
   };
 
