@@ -33,7 +33,7 @@ function NewsCardList(props) {
                     <NewsCard
                       isLoggedIn={isLoggedIn}
                       location={location}
-                      key={index}
+                      key={Math.round(Math.random() * 10000)}
                       article={article}
                       handleDeleteArticle={handleDeleteArticle}
                     />
@@ -51,7 +51,7 @@ function NewsCardList(props) {
                     <NewsCard
                       isLoggedIn={isLoggedIn}
                       location={location}
-                      key={index}
+                      key={Math.round(Math.random() * 10000)}
                       article={
                         {
                           title: article.title,

@@ -42,7 +42,7 @@ function App() {
         return;
       }
     })();
-    // setSearchedArticles(JSON.parse(localStorage.getItem('lastSearch')) || []);
+    setSearchedArticles(JSON.parse(localStorage.getItem('lastSearch')) || []);
   }, [isLoggedIn]);
 
   useEffect(() => {
@@ -89,7 +89,7 @@ function App() {
         localStorage.setItem('jwt', data.token);
       }
     }
-    catch {
+    catch (res) {
       closeAllPopups();
       alert('Failed to log in. Wrong email or password');
       return;
@@ -101,7 +101,7 @@ function App() {
         setCurrentUser(user || {});
         setLoggedIn(true);
       }
-    } catch {
+    } catch (res){
       closeAllPopups();
       alert('Failed to log in. User not found.');
       return;
