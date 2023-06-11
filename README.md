@@ -4,6 +4,6 @@ This page is a news-explorer, powered by [News API](https://newsapi.org/). The p
 
 Technologies used in the project: React.JS, Node.JS, Express.JS, MongoDB.
 
-[Link to the page](https://www.ilia-final.students.nomoreparties.sbs)
+[Link to the page](https://www.news.zaidin.online)
 
 [Link to the backend API of the page](https://github.com/IliaZaidin/news-explorer-api)
